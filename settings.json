@@ -1,0 +1,113 @@
+{
+  "editor.fontFamily": "'Martian Mono NF','ComicShannsMono Nerd Font', 'CartographCF Nerd Font', 'OpenDyslexic Nerd Font', 'Monaspace Xenon', 'Monaspace Krypton', 'Biscuit', 'DaddyTimeMono Nerd Font', 'Droid Sans Mono', 'monospace'",
+  "editor.fontSize": 18,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.inlayHints.padding": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.mouseWheelZoom": true,
+  //############################################################################################
+  "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font'",
+  //############################################################################################
+  "security.workspace.trust.untrustedFiles": "open",
+  //############################################################################################
+  // NIXOS
+  //############################################################################################
+  "nix.enableLanguageServer": true,
+  "nix.formatterPath": ["nix", "fmt", "--", "-"], // using flakes with `formatter = pkgs.alejandra;`'
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    // NIL
+    "nil": {
+      "formatting": {
+        "command": ["nixpkgs-fmt"]
+      }
+    }
+  },
+  //############################################################################################
+  // GIT
+  //############################################################################################
+  "git.autofetch": true,
+  //############################################################################################
+  "[shellscript]": {
+    "files.eol": "\n",
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "workbench.startupEditor": "none",
+  "jestrunner.jestCommand": "NUCLEUS_ENV=localtest DNALOG_MAX_VERBOSE=1 node_modules/.bin/jest",
+  "jestrunner.debugOptions": {
+    "env": {
+      "NUCLEUS_ENV": "localtest",
+      "DNALOG_MAX_VERBOSE": "1"
+    }
+  },
+  "remote.SSH.enableRemoteCommand": true,
+  "remote.SSH.externalSSH_ASKPASS": true,
+  "remote.SSH.showLoginTerminal": true,
+  "javascript.validate.enable": false,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "remote.tunnels.access.preventSleep": true,
+  "remote.tunnels.alwaysUpdateCLI": true,
+  "files.exclude": {
+    "**/.trunk/*actions/": true,
+    "**/.trunk/*logs/": true,
+    "**/.trunk/*notifications/": true,
+    "**/.trunk/*out/": true,
+    "**/.trunk/*plugins/": true
+  },
+  "files.watcherExclude": {
+    "**/.trunk/*actions/": true,
+    "**/.trunk/*logs/": true,
+    "**/.trunk/*notifications/": true,
+    "**/.trunk/*out/": true,
+    "**/.trunk/*plugins/": true
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "sonarlint.focusOnNewCode": false,
+  "diffEditor.experimental.showMoves": true,
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "redhat.telemetry.enabled": true,
+  //############################################################################################
+  // LUA
+  //############################################################################################
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+  "Lua.codeLens.enable": true,
+  "Lua.semantic.keyword": true,
+  "Lua.hint.setType": true,
+  "Lua.hint.enable": true,
+  "Lua.diagnostics.globals": ["vim"],
+  "Lua.diagnostics.disable": ["cast-type-mismatch"],
+  "Lua.completion.displayContext": 10,
+  //############################################################################################
+  "editor.semanticHighlighting.enabled": true,
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "semantic-highlighting.highlightGlobals": true,
+  "rust-analyzer.semanticHighlighting.operator.specialization.enable": true,
+  "rust-analyzer.semanticHighlighting.punctuation.enable": true,
+  "rust-analyzer.semanticHighlighting.punctuation.separate.macro.bang": true,
+  "rust-analyzer.semanticHighlighting.punctuation.specialization.enable": true,
+  "evenBetterToml.semanticTokens": true,
+  "Lua.completion.callSnippet": "Both",
+  "Lua.diagnostics.workspaceEvent": "OnChange",
+  "Lua.diagnostics.libraryFiles": "Enable",
+  "ocaml.server.extendedHover": true,
+  "oneDarkPro.bold": true,
+  "oneDarkPro.editorTheme": "One Dark Pro Mix",
+  "oneDarkPro.vivid": true,
+  "workbench.productIconTheme": "IntelliJ",
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "workbench.colorTheme": "Andromeda Italic"
+}

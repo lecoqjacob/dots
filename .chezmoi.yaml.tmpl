@@ -1,0 +1,36 @@
+{{- $email := (default "lecoqjacob@gmail.com" (env "PRIMARY_EMAIL")) -}}
+{{- $githubUsername := (default "lecoqjacob" (env "GITHUB_USERNAME")) -}}
+{{- $hostname := (default (output "hostname" "-s") (env "HOST")) -}}
+{{- $locale := (default "en_US" (env "LANG")) }}
+{{- $name := (default "Jacob LeCoq" (env "FULL_NAME")) -}}
+{{- $timezone := (default "America/Chicago" (env "TIMEZONE")) -}}
+
+encryption: "age"
+age:
+  identity: "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt"
+  recipient: "age1545w49n2kd2k4224kwz92s0tdha8vw83qj7py63rpt5k33umyyvsff3zll"
+
+data:
+  host:
+    arch: "{{ .chezmoi.arch }}"
+    home: "{{ .chezmoi.homeDir }}"
+    hostname: "{{ $hostname }}"
+  ssh:
+    allowUsers: {{ env "USER" }}
+  user:
+    email: "{{ $email }}"
+    github:
+      username: "{{ $githubUsername }}"
+    name: "{{ $name }}"
+    timezone: "{{ $timezone }}"
+    username: "{{ default "user" (env "USER") }}"
+
+textconv:
+  - pattern: "**/*.plist"
+    command: "plutil"
+    args:
+      - "-convert"
+      - "xml1"
+      - "-o"
+      - "-"
+      - "-"
