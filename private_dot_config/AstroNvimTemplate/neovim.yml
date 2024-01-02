@@ -1,0 +1,33 @@
+---
+base: lua54
+
+globals:
+  vim:
+    any: true
+
+  Globals:
+    any: true
+
+  table:
+    any: true
+    filter: any
+
+  assert:
+    args:
+      - type: bool
+      - type: string
+        required: false
+  after_each:
+    args:
+      - type: function
+  before_each:
+    args:
+      - type: function
+  describe:
+    args:
+      - type: string
+      - type: function
+  it:
+    args:
+      - type: string
+      - type: function
