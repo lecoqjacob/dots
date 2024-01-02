@@ -108,7 +108,7 @@ return function()
 
     config = {
       -- We can't use the default header because it's not possible to have icons in the datetime
-      header = week_header("", { "", wrap_text("AndromedaVim: Explore the Universe!", get_icon("LazyInit")) }),
+      header = week_header("", { "", wrap_text("AndromedaVim: Explore the Universe!!!", get_icon("LazyInit")) }),
 
       -- stylua: ignore
       center = {

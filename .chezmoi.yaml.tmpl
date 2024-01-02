@@ -24,6 +24,14 @@ edit:
   command: "code"
   args:
     - "--wait"
+    
+merge:
+  command: "nvim"
+  args:
+    - "-d"
+    - "{{ .Destination }}"
+    - "{{ .Source }}"
+    - "{{ .Target }}"
 
 data:
   # Any of `private`, `work`

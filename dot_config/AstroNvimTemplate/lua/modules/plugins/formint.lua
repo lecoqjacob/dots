@@ -1,4 +1,5 @@
--- AstroLSP allows you to customize the features in AstroNvim's LSP configuration engine
+local andromeda = require("andromeda")
+
 return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -23,7 +24,7 @@ return {
     config = function()
       require("mason-tool-installer").setup({
         run_on_start = false,
-        ensure_installed = require("andromeda").plugin.formatters_and_linters,
+        ensure_installed = andromeda.lsp.formatters_and_linters,
       })
 
       vim.defer_fn(vim.cmd.MasonToolsInstall, 2000)
@@ -32,8 +33,13 @@ return {
 
   {
     "mfussenegger/nvim-lint",
-    event = "VeryLazy",
-    config = function() end,
+    event = { "VeryLazy", "User AstroFile" },
+    opts = {
+      linters = andromeda.lsp.linting.linters,
+      linters_by_ft = andromeda.lsp.linting.linters_by_ft,
+      events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+    },
+    config = require("lsp.nvim-lint"),
   },
 
   {

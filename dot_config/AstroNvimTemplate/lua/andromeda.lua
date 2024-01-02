@@ -32,7 +32,7 @@ andromeda.theme = {
   --   tundra, onedarkpro, everforest, monokai-pro, onedark, fluoromachine
   -- A configuration file for each theme is in lua/themes/
   -- Use <F8> to step through themes
-  enabled = "tokyonight",
+  enabled = "starry",
   -- Available styles are:
   --   kanagawa:    wave, dragon, lotus
   --   tokyonight:  night, storm, day, moon
@@ -45,7 +45,7 @@ andromeda.theme = {
   --   kanagawa:  wave, dragon, lotus
   --   starry: darker, darksolar, deepocean, dracula, dracula_blood, earlysummer, emerald, limestone, mariana,
   --           monokai, moonlight, oceanic, palenight, starry, ukraine
-  style = "moonlight",
+  style = "dracula_blood",
   enable_transparent = true, -- enable transparency if the theme supports it
   enabled_themes = { "astrodark", "tokyonight", "fluoromachine", "kanagawa", "starry" },
 }
@@ -116,8 +116,12 @@ andromeda.plugin = {
     "vimdoc",
   },
 
-  --! LSP / Formatting / Linting
-  -- Formatters and linters installed by Mason
+  --! AstroNvim Specific
+  xtras = { "completion.cmp-cmdline" },
+}
+
+--! LSP / Formatting / Linting
+andromeda.lsp = {
   formatters_and_linters = {
     "actionlint", -- FORMATTERS_LINTERS
     -- "gofumpt", -- FORMATTERS_LINTERS
@@ -135,59 +139,56 @@ andromeda.plugin = {
     "yamllint", -- FORMATTERS_LINTERS
   },
 
-  --! AstroNvim Specific
-  xtras = { "completion.cmp-cmdline" },
-}
+  formatting = {
+    formatters_by_ft = {
+      sh = { "shfmt" },
+      lua = { "stylua" },
+      nix = { "alejandra" },
+      fish = { "fish_indent" },
+      python = { "isort", "black" },
+    },
 
-andromeda.formatting = {
-  formatters_by_ft = {
-    sh = { "shfmt" },
-    lua = { "stylua" },
-    nix = { "alejandra" },
-    fish = { "fish_indent" },
-    python = { "isort", "black" },
+    formatters = {
+      injected = { options = { ignore_errors = true } },
+      -- # Example of using dprint only when a dprint.json file is present
+      -- dprint = {
+      --   condition = function(ctx)
+      --     return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
+      --   end,
+      -- },
+      --
+      -- # Example of using shfmt with extra args
+      -- shfmt = {
+      --   prepend_args = { "-i", "2", "-ci" },
+      -- },
+    },
   },
 
-  formatters = {
-    injected = { options = { ignore_errors = true } },
-    -- # Example of using dprint only when a dprint.json file is present
-    -- dprint = {
-    --   condition = function(ctx)
-    --     return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
-    --   end,
-    -- },
-    --
-    -- # Example of using shfmt with extra args
-    -- shfmt = {
-    --   prepend_args = { "-i", "2", "-ci" },
-    -- },
-  },
-}
+  linting = {
+    linters_by_ft = {
+      json = {},
+      text = {},
+      toml = {},
+      gitcommit = {},
+      javascript = {},
+      nix = { "nix" },
+      typescript = {},
+      lua = { "selene" },
+      css = { "stylelint" },
+      python = { "pylint" },
+      sh = { "shellcheck" },
+      yaml = { "yamllint" },
+      markdown = { "markdownlint" },
+    },
 
-andromeda.linting = {
-  linters_by_ft = {
-    json = {},
-    text = {},
-    toml = {},
-    gitcommit = {},
-    javascript = {},
-    nix = { "nix" },
-    typescript = {},
-    lua = { "selene" },
-    css = { "stylelint" },
-    python = { "pylint" },
-    sh = { "shellcheck" },
-    yaml = { "yamllint" },
-    markdown = { "markdownlint" },
-  },
-
-  -- AndromedaVim extension to easily override linter options
-  -- or add custom linters.
-  ---@type table<string,table>
-  linters = {
-    -- selene = {
-    --   condition = function(ctx) return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1] end,
-    -- },
+    -- AndromedaVim extension to easily override linter options
+    -- or add custom linters.
+    ---@type table<string,table>
+    linters = {
+      -- selene = {
+      --   condition = function(ctx) return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1] end,
+      -- },
+    },
   },
 }
 
