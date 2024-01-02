@@ -41,5 +41,7 @@ in {
     vim-full
     vivid
     vscode-fhs
+    zoxide
+    zsh-autoenv
   ];
 }
