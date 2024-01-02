@@ -1,7 +1,12 @@
 #!/bin/sh
 
-if [ ! -f "/home/n16hth4wk/.config/chezmoi/key.txt" ]; then
-    mkdir -p "/home/n16hth4wk/.config/chezmoi"
-    chezmoi age decrypt --output "/home/n16hth4wk/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
-    # chmod 600 "/home/n16hth4wk/key.txt"
+set -e
+set -u
+
+if [ ! -f ~/.config/chezmoi/key.txt ]; then
+    echo "Decrypting chezmoi's decryption/encryption file (age)..."
+
+    mkdir -p ~/.config/chezmoi
+    chezmoi age decrypt --output ~/.config/chezmoi/key.txt --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+    chmod 600 ~/.config/chezmoi/key.txt
 fi

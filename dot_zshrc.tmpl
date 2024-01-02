@@ -296,47 +296,62 @@ alias clear=z4h-clear-screen-soft-bottom
 alias cat='bat --style header --style snip --style changes --style header'
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
-# Common use
-alias grubup="sudo update-grub"
-alias fixpacman="sudo rm /var/lib/pacman/db.lck"
-alias tarnow='tar -acf '
-alias untar='tar -zxvf '
-alias wget='wget -c '
-alias rmpkg="sudo pacman -Rdd"
-alias psmem='ps auxf | sort -nr -k 4'
-alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-alias upd='/usr/bin/garuda-update'
+# Aliases
 alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep='ugrep --color=auto'
-alias fgrep='ugrep -F --color=auto'
-alias egrep='ugrep -E --color=auto'
-alias hw='hwinfo --short'                          # Hardware Info
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
+alias bat='bat --style header --style snip --style changes'
 alias big="expac -H M '%m\t%n' | sort -h | nl"     # Sort installed packages according to size in MB (expac must be installed)
-alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
-alias ip='ip -color'
+alias cat='bat'
+alias cls='clear'
+alias dd='dd progress=status'
+alias df='duf'
+alias diffnix='nvd diff $(sh -c '\''ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2'\'')'
+alias dir='dir --color=auto'
+alias egrep='egrep --color=auto'
+alias fastfetch='fastfetch -l nixos'
+alias fgrep='fgrep --color=auto'
+alias g='git'
+alias gcommit='git commit -m'
+alias gitlog='git log --oneline --graph --decorate --all'
+alias glcone='git clone'
+alias gpr='git pull --rebase'
+alias gpull='git pull'
+alias gpush='git push'
+alias grep='ugrep --color=auto'
+alias hmb='home-manager build'
+alias hms='home-manager switch'
+alias hw='hwinfo --short'                          # Hardware Info
+alias ip='ip --color=auto'
+alias jctl='journalctl -p 3 -xb'
+alias ls='/nix/store/fhxfhln8rlwcqk37cdic0fgnbixsd32j-lsd-1.0.0/bin/lsd -gF --sort=extension --color=auto'
+alias md='mkdir -p'
+alias micro='micro -colorscheme geany -autosu true -mkparents true'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias psmem='ps auxf | sort -nr -k 4'
+alias rs='sudo systemctl'
+alias run='nix run nixpkgs#'
+alias say='/nix/store/7hb9836vxaf01ilxwpgkr9gzafgs9yg1-toilet-0.3/bin/toilet -f pagga'
+alias ssh-jlecoq-10620-rm-ltma-x='ssh jlecoq-10620-rm-ltma-x -t tmux a'
+alias su='sudo su -'
+alias tarnow='tar acf '
+alias untar='tar zxvf '
+alias us='systemctl --user'
+alias use='nix shell nixpkgs#'
+alias vdir='vdir --color=auto'
+alias vim='nvim'
+alias vimdiff='nvim -d'
+alias wget='wget -c'
+alias x='xargs'
+alias xo='xdg-open'
 
 # Get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
-
-# Help people new to Arch
-alias apt='man pacman'
-alias apt-get='man pacman'
-alias please='sudo'
-alias tb='nc termbin.com 9999'
-alias helpme='cht.sh --shell'
-alias pacdiff='sudo -H DIFFPROG=meld pacdiff'
-
-# Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

@@ -1,8 +1,15 @@
+{{- $choices := list "private" "work" -}}
+{{- $workspace:= promptChoiceOnce . "workspace" "Workspace?" $choices "private" -}}
+
+{{- $name := (default "Jacob LeCoq" (env "NAME")) -}}
+{{- $username := (default (output "whoami") (env "USER")) -}}
 {{- $email := (default "lecoqjacob@gmail.com" (env "PRIMARY_EMAIL")) -}}
 {{- $githubUsername := (default "lecoqjacob" (env "GITHUB_USERNAME")) -}}
+{{- $work_email := (default "jlecoq@dnanexus.com" (env "WORK_EMAIL")) -}}
+
+
 {{- $hostname := (default (output "hostname" | trim) (env "HOST")) -}}
 {{- $locale := (default "en_US" (env "LANG")) }}
-{{- $name := (default "Jacob LeCoq" (env "FULL_NAME")) -}}
 {{- $timezone := (default "America/Chicago" (env "TIMEZONE")) -}}
 
 encryption: "age"
@@ -10,12 +17,18 @@ age:
   identity: "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt"
   recipient: "age1545w49n2kd2k4224kwz92s0tdha8vw83qj7py63rpt5k33umyyvsff3zll"
 
+diff:
+  pager: delta
+
 edit:
   command: "code"
   args:
     - "--wait"
 
 data:
+  # Any of `private`, `work`
+  workspace: {{ $workspace }}
+
   host:
     arch: "{{ .chezmoi.arch }}"
     home: "{{ .chezmoi.homeDir }}"
@@ -23,12 +36,26 @@ data:
   ssh:
     allowUsers: {{ env "USER" }}
   user:
-    email: "{{ $email }}"
-    github:
-      username: "{{ $githubUsername }}"
     name: "{{ $name }}"
     timezone: "{{ $timezone }}"
-    username: "{{ default "user" (env "USER") }}"
+    username: "{{ $username }}"
+
+    {{- if contains $workspace "work" }}
+    email: "{{ $work_email }}"
+    {{- else }}
+    email: "{{ $email }}"
+    {{- end }}
+
+  # Git Setup.
+  git:
+    diffTool: nvim
+    mergeTool: vscode
+    username: "{{ $githubUsername }}"
+    configPath: {{ .chezmoi.homeDir }}/.config/git
+    toolsPath: {{ .chezmoi.homeDir }}/.config/git/tools
+
+    githooksCloneBranch: main
+    githooksCloneURL: https://github.com/gabyx/githooks.git
 
 textconv:
   - pattern: "**/*.plist"
