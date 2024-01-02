@@ -35,13 +35,12 @@ in {
 
     # Apps
     asciinema
-    ion
+    mcfly
     neovim
     tmux
     vim-full
     vivid
     vscode-fhs
     zoxide
-    zsh-autoenv
   ];
 }
